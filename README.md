@@ -1,5 +1,5 @@
 # WordBinder
-An opinionated long-form text editor.
+An opinionated text editor for long-form stories.
 
 ## Motivation
 I want to make a minimalist text editor that binds my research notes to the novel that I'm working on. I want 'type-safe' tooling around my story as I have around programming. The writer should be able to jump from idea to idea easily and without breaking flow, and auxiliary research should automatically be provided on the side lines for quick reference.
