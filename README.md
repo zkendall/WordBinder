@@ -1,12 +1,8 @@
-# Text Chrome App
+# WordBinder
+An opinionated long-form text editor.
 
-Just a text editor for ChromeOS and Chrome. To install visit the [Chrome Web Store page](https://chrome.google.com/webstore/detail/mmfbcljfglbokpmkimbfghdkjmjhdgbg).
-
-## Getting the code
-
-You can download the whole source code [as one archive](https://github.com/GoogleChrome/text-app/archive/master.zip), or get it from the repository using git:
-
-    git clone --recursive git://github.com/GoogleChrome/text-app.git
+## Motivation
+I want to make a minimalist text editor that binds my research notes to the novel that I'm working on. I want 'type-safe' tooling around my story as I have around programming. The writer should be able to jump from idea to idea easily and without breaking flow, and auxiliary research should automatically be provided on the side lines for quick reference.
 
 ## Running the development version
 
@@ -22,3 +18,6 @@ Building script requires Python3 and will use online Closure Compiler. Just run
     python3 build.py
 
 and the package will be written to `text-app/build/` directory in zipped and unzipped formats.
+
+# Forked from Chrome Text App
+Originally, I forked Googles simple text app to build on top of.
