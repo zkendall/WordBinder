@@ -201,9 +201,6 @@ Tabs.prototype.newTab = function(opt_content, opt_entry) {
   this.tabs_.push(tab);
   $.event.trigger('newtab', tab);
   this.showTab(tab.getId());
-  var fileNameExtension = tab.getExtension();
-  if (fileNameExtension)
-    this.editor_.setMode(session, fileNameExtension);
 };
 
 /**
@@ -375,13 +372,6 @@ Tabs.prototype.openFileEntry = function(entry) {
 
     entry.file(this.readFileToNewTab_.bind(this, entry));
   }.bind(this));
-};
-
-Tabs.prototype.modeAutoSet = function(tab) {
-  var extension = tab.getExtension();
-  if (extension) {
-    this.editor_.setMode(tab.getSession(), extension);
-  }
 };
 
 Tabs.prototype.readFileToNewTab_ = function(entry, file) {

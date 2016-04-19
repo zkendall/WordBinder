@@ -61,7 +61,6 @@ MenuController.prototype.onDragOver_ = function(overItem, e) {
 
 MenuController.prototype.onTabRenamed = function(e, tab) {
   $('#tab' + tab.getId() + ' .filename').text(tab.getName());
-  this.tabs_.modeAutoSet(tab);
 };
 
 MenuController.prototype.onTabPathChange = function(e, tab) {
