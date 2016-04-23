@@ -589,6 +589,14 @@ input[type=search]:focus {
   line-height: 1.2em;
 }
 
+.CodeMirror-selection-highlight-scrollbar {
+  background-color: rgba(253, 207, 76, .5);
+}
+
+.cm-matchhighlight {
+  background-color: rgba(253, 207, 76, .5);
+}
+
 header.search-active ~ #editor div.CodeMirror .cm-matchhighlight {
   background-color: rgba(253, 207, 76, .5);
 }

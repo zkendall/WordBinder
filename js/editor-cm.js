@@ -17,7 +17,7 @@ function EditorCodeMirror(editorElement, settings) {
         'highlightSelectionMatches': {
           minChars: 1,
           delay: 0,
-          caseInsensitive: true
+          annotateScrollbar: true
         }
       });
   this.cm_.setSize(null, 'auto');
