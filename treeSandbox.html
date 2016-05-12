@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sandbox</title>
+    <link rel="stylesheet" href="lib/jqTree/jqtree.css">
+    <script src="lib/jquery-2.2.3.min.js"></script>
+</head>
+<body>
+	<div id="tree1" data-url="/example_data/"></div>
+    <ul id="filelist"></ul>
+	<script>
+
+$(function() {
+    $('#tree1').tree({
+        data: data
+    });
+});
+
+var data = [
+    {
+        label: 'node1',
+        children: [
+            { label: 'child1' },
+            { label: 'child2' }
+        ]
+    },
+    {
+        label: 'node2',
+        children: [
+            { label: 'child3' }
+        ]
+    }
+];
+
+
+
+</script>
+
+</body>
+
+<script src="lib/jqTree/tree.jquery.js"></script>
+</html>
