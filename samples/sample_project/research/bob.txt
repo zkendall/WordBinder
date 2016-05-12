@@ -1,0 +1,2 @@
+[ bob ]
+I am a sample character
