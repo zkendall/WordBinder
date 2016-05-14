@@ -16,10 +16,9 @@ describe("File System Directory", function() {
   });
 
   it("when given directory reader, returns entries", function() {
-  	console.log(entries);
-  	var reader = new MockDirectoryReader();
-  	var results = service.getEntries(reader);
-  	expect(results.length).toEqual(2);
+    var reader = new MockDirectoryReader(entries);
+    var results = service.getDirectoryEntries(reader);
+    expect(results.length).toEqual(entries.length);
   });
 
 });

@@ -14,20 +14,28 @@ function errorHandler(error) {
   console.log("Error: " + error.message);
 }
 
-FileSystemService.prototype.getEntries = function(directoryReader) {
-  var entries = [];
+FileSystemService.prototype.getDirectoryEntries = function(directoryReader) {
+  var results = []
 
-  // Call the reader.readEntries() until no more results are returned.
-  var readEntries = function() {
-     directoryReader.readEntries (function(results) {
-      if (!results.length) {
-        return entries.sort();
-      } else {
-        entries = entries.concat(toArray(results));
-        readEntries();
-      }
-    }, errorHandler);
-  };
+  var getEntries = function(directoryReader, resultCallback) {
+    var entries = [];
 
-  return readEntries(); // Start reading dirs.
+    // Call the reader.readEntries() until no more results are returned.
+    var readEntries = function() {
+       directoryReader.readEntries (function(results) {
+        if (!results.length) {
+          resultCallback(entries.sort());
+        } else {
+          entries = entries.concat(toArray(results));
+          readEntries();
+        }
+      }, errorHandler);
+    };
+    readEntries(); // Start reading dirs.
+  }
+  
+  getEntries(directoryReader, function(entries){ results = entries; });
+  return results;
 }
+
+

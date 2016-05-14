@@ -42,5 +42,10 @@ function MockDirectoryReader(entries) {
 */
 MockDirectoryReader.prototype.readEntries = function(successCallback, errorCallback) {
   //TODO: If more than one entry, return half at a time to mimic Chrome.  
-  return this.entries;
+  
+  // Clear out entries before sending to callback.
+  var cache = this.entries;
+  this.entries = []
+  successCallback(cache);
+
 }
