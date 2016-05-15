@@ -41,4 +41,32 @@ FileSystemService.prototype.getDirectoryEntries = function(directoryEntry) {
   return results;
 }
 
+function entryToModel(entry) {
+  return { 
+    label: entry.name,
+    children: []
+  }
+}
+
+/**
+ * @param  {DirectoryEntry}
+ * @return {tree}
+ */
+FileSystemService.prototype.getTreeModel = function(rootDirEntry) {
+  var root = []
+
+  var entries = this.getDirectoryEntries(rootDirEntry)
+  for (var i = 0, len = entries.length; i < len; ++i) {
+    var entry = entries[i];
+    var model = entryToModel(entry);
+
+    if(entry.isDirectory) {
+      model.children = this.getTreeModel(entry);
+    }
+
+    root.push(model);
+  }
+  return root;
+}
+
 

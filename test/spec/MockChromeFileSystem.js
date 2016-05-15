@@ -26,7 +26,11 @@ function MockFileEntry(name, fullPath) {
 function MockDirectoryEntry(name, entries) {
   this.isDirectory = true;
   this.name = name;
-  this.entries = entries;
+  if(entries === undefined) {
+    this.entries = [];
+  } else {
+    this.entries = entries;
+  }
 }
 
 MockDirectoryEntry.prototype.createReader = function() {

@@ -15,9 +15,14 @@ describe("File System Directory", function() {
     expect(fileSystem.chosenFileEntry).toBeTruthy();
   });
 
-  it("when given directory reader, returns entries", function() {
+  it("when given directory entry, returns entries", function() {
     var results = service.getDirectoryEntries(dirEntry);
     expect(results.length).toEqual(entries.length);
+  });
+
+  it("given directory entry, returns jqTree root", function() {
+      var results = service.getTreeModel(dirEntry);
+      console.log(results);
   });
 
 });

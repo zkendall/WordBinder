@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>Sandbox</title>
-    <link rel="stylesheet" href="lib/jqTree/jqtree.css">
-    <script src="lib/jquery-2.2.3.min.js"></script>
+    <link rel="stylesheet" href="../lib/jqTree/jqtree.css">
+    <script src="../lib/jquery-2.2.3.min.js"></script>
 </head>
 <body>
 	<div id="tree1" data-url="/example_data/"></div>
@@ -16,11 +16,19 @@ $(function() {
     });
 });
 
+
+
+var testName = "node1"
 var data = [
     {
-        label: 'node1',
+        label: testName,
         children: [
-            { label: 'child1' },
+            { 
+                label: 'child1',
+                children: [
+                {
+                    label:'subchild'
+                }]}, 
             { label: 'child2' }
         ]
     },
@@ -29,7 +37,12 @@ var data = [
         children: [
             { label: 'child3' }
         ]
+    },
+    {
+        label: 'empty folder',
+        children: []
     }
+
 ];
 
 
@@ -38,5 +51,5 @@ var data = [
 
 </body>
 
-<script src="lib/jqTree/tree.jquery.js"></script>
+<script src="../lib/jqTree/tree.jquery.js"></script>
 </html>
