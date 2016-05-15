@@ -20,9 +20,27 @@ describe("File System Directory", function() {
     expect(results.length).toEqual(entries.length);
   });
 
-  it("given directory entry, returns jqTree root", function() {
-      var results = service.getTreeModel(dirEntry);
-      console.log(results);
+  describe("Interaction with jqTree", function() {
+
+    beforeEach(function() {
+      $('body').append('<div id="tree1"></div>');
+    });
+
+    afterEach(function() {
+      // Can comment this out to see the tree in the Jasmine Spec Runner
+      var $tree = $('#tree1');
+      $tree.tree('destroy');
+      $tree.remove();
+    });
+    
+    it("given directory entry, returns jqTree root", function() {
+        var results = service.getTreeModel(dirEntry);
+
+        expect(results[0].label).toEqual(entries[0].name);
+
+        $('#tree1').tree({data: results});
+
+    });
   });
 
 });
