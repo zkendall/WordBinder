@@ -2,7 +2,8 @@
 *
 * Reference: http://www.html5rocks.com/en/tutorials/file/filesystem/
 */
-function FileSystemService() {
+function FileSystemService(fileSystem) {
+  this._fileSystem = fileSystem;
 }
 
 
@@ -14,7 +15,7 @@ function errorHandler(error) {
   console.log("Error: " + error.message);
 }
 
-FileSystemService.prototype.getDirectoryEntries = function(directoryReader) {
+FileSystemService.prototype.getDirectoryEntries = function(directoryEntry) {
   var results = []
 
   var getEntries = function(directoryReader, resultCallback) {
@@ -33,8 +34,10 @@ FileSystemService.prototype.getDirectoryEntries = function(directoryReader) {
     };
     readEntries(); // Start reading dirs.
   }
-  
-  getEntries(directoryReader, function(entries){ results = entries; });
+
+  var reader = directoryEntry.createReader();
+
+  getEntries(reader, function(entries){ results = entries; });
   return results;
 }
 

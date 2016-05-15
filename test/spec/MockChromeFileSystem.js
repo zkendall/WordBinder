@@ -15,10 +15,11 @@ MockChromeFileSystem.prototype.chooseEntry = function(options, callback) {
 
 };
 
-function MockFileEntry(name) {
+function MockFileEntry(name, fullPath) {
   this.isFile = true;
   this.isDirectory = false;
   this.name = name;
+  this.path = fullPath;
 }
 
 
@@ -29,7 +30,7 @@ function MockDirectoryEntry(name, entries) {
 }
 
 MockDirectoryEntry.prototype.createReader = function() {
-  return new MockDirectoryReader(entries);
+  return new MockDirectoryReader(this.entries);
 }
 
 function MockDirectoryReader(entries) {
