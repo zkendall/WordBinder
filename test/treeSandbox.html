@@ -14,6 +14,9 @@ $(function() {
     $('#tree1').tree({
         data: data
     });
+
+    var node = $('#tree1').tree('getNodeById', 'test');
+    console.log(node);
 });
 
 
@@ -21,7 +24,7 @@ $(function() {
 var testName = "node1"
 var data = [
     {
-        label: testName,
+        label: testName, id: 'test',
         children: [
             { 
                 label: 'child1',
