@@ -2,6 +2,7 @@ var log = console.log.bind(console);
 
 describe("File System Directory", function() {
 
+  // Build test file system data
   var text1 = new MockFileEntry("text1");
   var text2 = new MockFileEntry("text2");
   var texts = [text1, text2];
@@ -17,18 +18,11 @@ describe("File System Directory", function() {
 
   var service = new FileSystemService(fileSystem); 
 
-  beforeEach(function() {
-    fileSystem.chosenFileEntry = {};
-  });
-
-  it("has chosenFileEntry", function() {
-    expect(fileSystem.chosenFileEntry).toBeTruthy();
-  });
-
   it("when given directory entry, returns entries", function() {
     var results = service.getDirectoryEntries(dirEntry);
     expect(results.length).toEqual(entries.length);
   });
+
 
   describe("Interaction with jqTree", function() {
 
@@ -55,7 +49,7 @@ describe("File System Directory", function() {
         var $tree = $('#tree1');
         $tree.tree({data: results});
 
-        // Then
+        // Then 
         var tree = $tree.tree("getTree");
         log(tree);
         expect(tree.children[0].name).toEqual(textDir.name);
@@ -66,6 +60,11 @@ describe("File System Directory", function() {
         expect(tree.children[1].children[0].name).toEqual(research1.name);
         expect(tree.children[1].children[1].name).toEqual(research2.name);
     });
+  });
+
+  describe("Opening files", function() {
+
+
   });
 
 });
