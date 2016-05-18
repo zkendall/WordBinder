@@ -3,12 +3,13 @@ var log = console.log.bind(console);
 describe("File System Directory", function() {
 
   // Build test file system data
-  var text1 = new MockFileEntry("text1");
-  var text2 = new MockFileEntry("text2");
+  var text1 = new MockFileEntry("text1", text1_content);
+  var text2 = new MockFileEntry("text2", text2_content);
+  log(text1);
   var texts = [text1, text2];
   var textDir = new MockDirectoryEntry("Text", texts);
-  var research1 = new MockFileEntry("research1");
-  var research2 = new MockFileEntry("research2");
+  var research1 = new MockFileEntry("research1", research1_content);
+  var research2 = new MockFileEntry("research2", research2_content);
   var researches = [research1, research2];
   var researchDir = new MockDirectoryEntry("Research", researches);
   var entries = [textDir, researchDir];

@@ -15,11 +15,11 @@ MockChromeFileSystem.prototype.chooseEntry = function(options, callback) {
 
 };
 
-function MockFileEntry(name, fullPath) {
+function MockFileEntry(name, content) {
   this.isFile = true;
   this.isDirectory = false;
   this.name = name;
-  this.path = fullPath;
+  this.content = content;
 }
 
 
