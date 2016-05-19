@@ -43,16 +43,15 @@ describe("File System Directory", function() {
         var results = service.getTreeModel(dirEntry);
         
         // Then
-        expect(results[0].label).toEqual(entries[0].name);
-        expect(results[1].label).toEqual(entries[1].name);
+        expect(results[0].name).toEqual(entries[0].name);
+        expect(results[1].name).toEqual(entries[1].name);
 
         // And when model sent to jqTree
         var $tree = $('#tree1');
         $tree.tree({data: results});
-
-        // Then 
         var tree = $tree.tree("getTree");
-        log(tree);
+
+        // Then
         expect(tree.children[0].name).toEqual(textDir.name);
         expect(tree.children[0].children[0].name).toEqual(text1.name);
         expect(tree.children[0].children[1].name).toEqual(text2.name);

@@ -43,7 +43,7 @@ FileSystemService.prototype.getDirectoryEntries = function(directoryEntry) {
 
 function entryToModel(entry) {
   return { 
-    label: entry.name,
+    name: entry.name,
     children: []
   }
 }
