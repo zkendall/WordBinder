@@ -69,4 +69,25 @@ FileSystemService.prototype.getTreeModel = function(rootDirEntry) {
   return root;
 }
 
+function _fileReaderSuccessCallback(successCallback) {
+  return function(file) {
+    var reader = new FileReader();
+    // Prepare reader
+    reader.onloadend = function(e) {
+      // Pass contents to callback
+      successCallback(this.result);
+    };
+    // Trigger read
+    reader.readAsText(file);
+  }
+}
 
+FileSystemService.prototype.readFile = function(path, successCallback) {
+  this._fileSystem.getFile(path, {}, function(fileEntry) {
+    fileEntry.file(_fileReaderSuccessCallback(successCallback));
+  }, errorHandler);
+}
+
+FileSystemService.prototype.readFileEntry = function(fileEntry, successCallback) {
+  fileEntry.file(_fileReaderSuccessCallback(successCallback), errorHandler);
+}

@@ -363,6 +363,7 @@ Tabs.prototype.getFilesToRetain = function() {
 
 Tabs.prototype.openFileEntry = function(entry) {
   chrome.fileSystem.getDisplayPath(entry, function(path) {
+    // If file already open, show focus tab.
     for (var i = 0; i < this.tabs_.length; i++) {
       if (this.tabs_[i].getPath() === path) {
         this.showTab(this.tabs_[i].getId());

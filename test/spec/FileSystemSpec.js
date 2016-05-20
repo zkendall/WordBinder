@@ -5,7 +5,6 @@ describe("File System Directory", function() {
   // Build test file system data
   var text1 = new MockFileEntry("text1", text1_content);
   var text2 = new MockFileEntry("text2", text2_content);
-  log(text1);
   var texts = [text1, text2];
   var textDir = new MockDirectoryEntry("Text", texts);
   var research1 = new MockFileEntry("research1", research1_content);
@@ -63,7 +62,17 @@ describe("File System Directory", function() {
   });
 
   describe("Opening files", function() {
+    
+    it("Read contents of File Entry", function() {
+      var results;
+      var reader = _fileReaderSuccessCallback(function(contents) { results = contents; }); 
+      text1.file(reader);
+      expect(results).toEqual(text1.content);
+    });
 
+    it("Open File", function() {
+
+    });
 
   });
 

@@ -6,14 +6,13 @@ function MockChromeFileSystem(directoryEntry, fileEntry) {
 // The callback parameter should be a function that looks like this:
 // function(Entry entry, array of FileEntry fileEntries) {...};
 MockChromeFileSystem.prototype.chooseEntry = function(options, callback) {
- 
   if(directoryEntry) {
    callback(directoryEntry);
   } else {
    callback(fileEntry);
   }
-
 };
+
 
 function MockFileEntry(name, content) {
   this.isFile = true;
@@ -21,6 +20,23 @@ function MockFileEntry(name, content) {
   this.name = name;
   this.content = content;
 }
+
+MockFileEntry.prototype.file = function(successCallback, errorCallback) {
+  // Ignore File interface, and just pass through FileEntry for now.
+  successCallback(this);
+};
+
+/*
+This is a mock, but named to override instantiation in FileSystemService
+ */
+function FileReader() {
+}
+
+FileReader.prototype.readAsText = function(file) {
+  this.result = file.content;
+  this.onloadend();
+};
+
 
 
 function MockDirectoryEntry(name, entries) {
