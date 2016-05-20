@@ -13,6 +13,9 @@ MockChromeFileSystem.prototype.chooseEntry = function(options, callback) {
   }
 };
 
+MockChromeFileSystem.prototype.getFile = function(path, options, successCallback, errorCallback) {
+  
+};
 
 function MockFileEntry(name, content) {
   this.isFile = true;
@@ -36,7 +39,6 @@ FileReader.prototype.readAsText = function(file) {
   this.result = file.content;
   this.onloadend();
 };
-
 
 
 function MockDirectoryEntry(name, entries) {

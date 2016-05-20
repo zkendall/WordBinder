@@ -65,13 +65,14 @@ describe("File System Directory", function() {
     
     it("Read contents of File Entry", function() {
       var results;
-      var reader = _fileReaderSuccessCallback(function(contents) { results = contents; }); 
-      text1.file(reader);
+      var reader = service.readFileEntry(text1, function(contents) { results = contents; });
       expect(results).toEqual(text1.content);
     });
 
-    it("Open File", function() {
-
+    it("Read contents of path", function() {
+      var results;
+      var reader = service.readFile("text/text1", function(contents) { results = contents; });
+      expect(results).toEqual(text1.content);
     });
 
   });
