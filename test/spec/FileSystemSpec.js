@@ -65,14 +65,23 @@ describe("File System Directory", function() {
     
     it("Read contents of File Entry", function() {
       var results;
-      var reader = service.readFileEntry(text1, function(contents) { results = contents; });
+      service.readFileEntry(text1, function(contents) { results = contents; });
       expect(results).toEqual(text1.content);
     });
 
     it("Read contents of path", function() {
       var results;
-      var reader = service.readFile("text/text1", function(contents) { results = contents; });
+      service.readFile("text/text1", function(contents) { results = contents; });
       expect(results).toEqual(text1.content);
+
+      service.readFile("Research/Research2", function(contents) { results = contents; });
+      expect(results).toEqual(research2.content);
+    });
+
+    it("No file found", function() {
+      var nonExistant;
+      service.readFile("Research/I don't exist", function(contents) { results = contents; });
+      expect(nonExistant).toBeFalsy();
     });
 
   });

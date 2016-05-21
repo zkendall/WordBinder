@@ -27,13 +27,16 @@ MockChromeFileSystem.prototype.getFile = function(path, options, successCallback
         } 
       } else if (i == arr.length -1) { // Last element should be file 
         if(arr[i].toLowerCase() == value.name.toLowerCase()) {
+          found = true;
           successCallback(value);
-        } else { errorCallback( {message:"No matching file."})}
-        return;
+          return;
+        }
       }
     });
     // Don't try next path, if no current match
-    if(found == false) { return; }
+    if(found == false) {
+      errorCallback({message:`No file found for: ${path}`}); return;
+    }
   };
 };
 
