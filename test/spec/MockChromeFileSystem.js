@@ -1,6 +1,6 @@
 function MockChromeFileSystem(directoryEntry, fileEntry) {
-  this.chosenFileEntry = directoryEntry;
-  this.chosenDirectoryEntry = fileEntry;
+  // this.chosenFileEntry = fileEntry;
+  this.root = directoryEntry;
 }
 
 // The callback parameter should be a function that looks like this:
@@ -14,7 +14,27 @@ MockChromeFileSystem.prototype.chooseEntry = function(options, callback) {
 };
 
 MockChromeFileSystem.prototype.getFile = function(path, options, successCallback, errorCallback) {
-  
+  var arr = path.split('/');
+  var curDir = this.root;
+  var result;
+  for (var i = 0, len = arr.length; i < len; i++) {
+    var found = false;
+    _(curDir.entries).forEach(function(value) {
+      if(value.isDirectory == true) {
+        if(arr[i].toLowerCase() == value.name.toLowerCase()) {
+          found = true;
+          curDir = value;
+        } 
+      } else if (i == arr.length -1) { // Last element should be file 
+        if(arr[i].toLowerCase() == value.name.toLowerCase()) {
+          successCallback(value);
+        } else { errorCallback( {message:"No matching file."})}
+        return;
+      }
+    });
+    // Don't try next path, if no current match
+    if(found == false) { return; }
+  };
 };
 
 function MockFileEntry(name, content) {
