@@ -2,71 +2,68 @@
 *
 * Reference: http://www.html5rocks.com/en/tutorials/file/filesystem/
 */
-function FileSystemService(fileSystem) {
-  this._fileSystem = fileSystem;
-}
-
-
-function toArray(list) {
-  return Array.prototype.slice.call(list || [], 0);
-}
-
-function errorHandler(error) {
-  console.log("Error: " + error.message);
-}
-
-FileSystemService.prototype.getDirectoryEntries = function(directoryEntry) {
-  var results = []
-
-  var getEntries = function(directoryReader, resultCallback) {
-    var entries = [];
-
-    // Call the reader.readEntries() until no more results are returned.
-    var readEntries = function() {
-       directoryReader.readEntries (function(results) {
-        if (!results.length) {
-          resultCallback(entries.sort());
-        } else {
-          entries = entries.concat(toArray(results));
-          readEntries();
-        }
-      }, errorHandler);
-    };
-    readEntries(); // Start reading dirs.
+class FileSystemService {
+  constructor(fileSystem) {
+    this._fileSystem = fileSystem;
   }
 
-  var reader = directoryEntry.createReader();
+  getDirectoryEntries(directoryEntry) {
+    var results = []
 
-  getEntries(reader, function(entries){ results = entries; });
-  return results;
-}
+    var getEntries = function(directoryReader, resultCallback) {
+      var entries = [];
 
-function entryToModel(entry) {
-  return { 
-    name: entry.name,
-    children: []
-  }
-}
-
-/**
- * @param  {DirectoryEntry}
- * @return {tree}
- */
-FileSystemService.prototype.getTreeModel = function(rootDirEntry) {
-  var root = []
-
-  var entries = this.getDirectoryEntries(rootDirEntry)
-  for (var i = 0, len = entries.length; i < len; ++i) {
-    var entry = entries[i];
-    var model = entryToModel(entry);
-
-    if(entry.isDirectory) {
-      model.children = this.getTreeModel(entry);
+      // Call the reader.readEntries() until no more results are returned.
+      var readEntries = function() {
+         directoryReader.readEntries (function(results) {
+          if (!results.length) {
+            resultCallback(entries.sort());
+          } else {
+            entries = entries.concat(_toArray(results));
+            readEntries();
+          }
+        }, _errorHandler);
+      };
+      readEntries(); // Start reading dirs.
     }
 
-    root.push(model);
+    var reader = directoryEntry.createReader();
+
+    getEntries(reader, function(entries){ results = entries; });
+    return results;
   }
-  return root;
+
+  /**
+   * @param  {DirectoryEntry}
+   * @return {tree}
+   */
+  getTreeModel(rootDirEntry) {
+    var root = []
+
+    var entries = this.getDirectoryEntries(rootDirEntry)
+    for (var i = 0, len = entries.length; i < len; ++i) {
+      var entry = entries[i];
+      var model = _entryToModel(entry);
+
+      if(entry.isDirectory) {
+        model.children = this.getTreeModel(entry);
+      }
+
+      root.push(model);
+    }
+    return root;
+  }
+
+  readFile(path, successCallback) {
+    this._fileSystem.getFile(path, {}, function(fileEntry) {
+      fileEntry.file(_fileReaderSuccessCallback(successCallback));
+    }, _errorHandler);
+  }
+
+  readFileEntry(fileEntry, successCallback) {
+    fileEntry.file(_fileReaderSuccessCallback(successCallback), _errorHandler);
+  }
+
 }
 
 function _fileReaderSuccessCallback(successCallback) {
@@ -82,12 +79,17 @@ function _fileReaderSuccessCallback(successCallback) {
   }
 }
 
-FileSystemService.prototype.readFile = function(path, successCallback) {
-  this._fileSystem.getFile(path, {}, function(fileEntry) {
-    fileEntry.file(_fileReaderSuccessCallback(successCallback));
-  }, errorHandler);
+function _toArray(list) {
+  return Array.prototype.slice.call(list || [], 0);
 }
 
-FileSystemService.prototype.readFileEntry = function(fileEntry, successCallback) {
-  fileEntry.file(_fileReaderSuccessCallback(successCallback), errorHandler);
+function _errorHandler(error) {
+  console.log("Error: " + error.message);
+}
+
+function _entryToModel(entry) {
+  return { 
+    name: entry.name,
+    children: []
+  }
 }

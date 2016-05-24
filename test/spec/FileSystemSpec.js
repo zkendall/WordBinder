@@ -14,7 +14,7 @@ describe("File System Directory", function() {
   var entries = [textDir, researchDir];
   var dirEntry = new MockDirectoryEntry("root", entries);
 
-  fileSystem = new MockChromeFileSystem(dirEntry);
+  var fileSystem = new MockChromeFileSystem(dirEntry);
 
   var service = new FileSystemService(fileSystem); 
 
