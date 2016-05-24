@@ -53,11 +53,15 @@ describe("File System Directory", function() {
         // Then
         expect(tree.children[0].name).toEqual(textDir.name);
         expect(tree.children[0].children[0].name).toEqual(text1.name);
+        expect(tree.children[0].children[0].textContent).toEqual(text1.content);
         expect(tree.children[0].children[1].name).toEqual(text2.name);
+        expect(tree.children[0].children[1].textContent).toEqual(text2.content);
 
         expect(tree.children[1].name).toEqual(researchDir.name);
         expect(tree.children[1].children[0].name).toEqual(research1.name);
+        expect(tree.children[1].children[0].textContent).toEqual(research1.content);
         expect(tree.children[1].children[1].name).toEqual(research2.name);
+        expect(tree.children[1].children[1].textContent).toEqual(research2.content);
     });
   });
 

@@ -47,6 +47,9 @@ class FileSystemService {
 
       if(entry.isDirectory) {
         model.children = this.getTreeModel(entry);
+      } else {
+        // Get file content.
+        this.readFileEntry(entry, function(content) { model.textContent = content;});
       }
 
       root.push(model);
@@ -71,7 +74,7 @@ function _fileReaderSuccessCallback(successCallback) {
     var reader = new FileReader();
     // Prepare reader
     reader.onloadend = function(e) {
-      // Pass contents to callback
+      // Pass content to callback
       successCallback(this.result);
     };
     // Trigger read
