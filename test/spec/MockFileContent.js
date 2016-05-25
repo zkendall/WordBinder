@@ -4,6 +4,6 @@ var text1_content =
 
 var text2_content = "In Wonderland, Bob died.";
 
-var research1_content = "[ Bob ]\n I am a sample character.";
+var research1_content = "# Bob\n I am a sample character.";
 
-var research2_content = "[ Wonderland ]\n I am a sample place.";
+var research2_content = "# Wonderland \n I am a sample place.";

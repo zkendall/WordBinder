@@ -90,12 +90,4 @@ describe("File System Directory", function() {
 
   });
 
-  describe("Indexing", function() {
-    
-    it("Parse research title", function() {
-     
-    });
-
-  });
-
 });
