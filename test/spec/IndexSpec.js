@@ -9,6 +9,9 @@ describe("Indexing", function() {
     it("Parse research title", function() {
       var title = parser.getTitle(research1_content);
       expect(title).toEqual("Bob")
+
+       var title = parser.getTitle(research2_content);
+      expect(title).toEqual("Wonderland")
     });
 
   });
