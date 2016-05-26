@@ -1,5 +1,5 @@
-[ Chapter 1 ]
-I am a sample chapter.
+# Chapter 1 
+I am a sample chapter. Once upon a time lived Bob.
 
 Story story.
 
