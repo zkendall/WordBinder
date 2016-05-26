@@ -7,9 +7,41 @@ class FileSystemService {
     this._fileSystem = fileSystem;
   }
 
-  getDirectoryEntries(directoryEntry) {
-    var results = []
+  chooseDirectoryAsModel(callback) {
+    var params = {'type': 'openDirectory'};
+    var getTree = this.getTreeModel.bind(this);
+    this._fileSystem.chooseEntry(
+      params,
+      function(entry, fileEntries) {
+        getTree(entry, callback);
+      });
+  }
 
+  /**
+   * @param  {DirectoryEntry}
+   * @return {tree}
+   */
+  getTreeModel(rootDirEntry, callback) {
+    var entries = this.getDirectoryEntries(rootDirEntry, function(entries){
+    var root = []
+      for (var i = 0, len = entries.length; i < len; ++i) {
+        var entry = entries[i];
+        var model = _entryToModel(entry);
+
+        if(entry.isDirectory) {
+          // TODO: This doesn't seem to work sufficiently. Async Timing?
+          this.getTreeModel(entry, function(children) { model.children = children;});
+        } else {
+          // Get file content.
+          this.readFileEntry(entry, function(content) { model.textContent = content;});
+        }
+        root.push(model);
+      }
+      callback(root);
+    }.bind(this));
+  }
+
+  getDirectoryEntries(directoryEntry, resultCallback) {
     var getEntries = function(directoryReader, resultCallback) {
       var entries = [];
 
@@ -28,43 +60,17 @@ class FileSystemService {
     }
 
     var reader = directoryEntry.createReader();
-
-    getEntries(reader, function(entries){ results = entries; });
-    return results;
+    getEntries(reader, resultCallback);
   }
 
-  /**
-   * @param  {DirectoryEntry}
-   * @return {tree}
-   */
-  getTreeModel(rootDirEntry) {
-    var root = []
-
-    var entries = this.getDirectoryEntries(rootDirEntry)
-    for (var i = 0, len = entries.length; i < len; ++i) {
-      var entry = entries[i];
-      var model = _entryToModel(entry);
-
-      if(entry.isDirectory) {
-        model.children = this.getTreeModel(entry);
-      } else {
-        // Get file content.
-        this.readFileEntry(entry, function(content) { model.textContent = content;});
-      }
-
-      root.push(model);
-    }
-    return root;
+  readFileEntry(fileEntry, successCallback) {
+    fileEntry.file(_fileReaderSuccessCallback(successCallback), _errorHandler);
   }
 
   readFile(path, successCallback) {
     this._fileSystem.getFile(path, {}, function(fileEntry) {
       fileEntry.file(_fileReaderSuccessCallback(successCallback));
     }, _errorHandler);
-  }
-
-  readFileEntry(fileEntry, successCallback) {
-    fileEntry.file(_fileReaderSuccessCallback(successCallback), _errorHandler);
   }
 
 }

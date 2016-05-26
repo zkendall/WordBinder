@@ -3,13 +3,10 @@ function MockChromeFileSystem(directoryEntry, fileEntry) {
   this.root = directoryEntry;
 }
 
-// The callback parameter should be a function that looks like this:
-// function(Entry entry, array of FileEntry fileEntries) {...};
+
 MockChromeFileSystem.prototype.chooseEntry = function(options, callback) {
-  if(directoryEntry) {
-   callback(directoryEntry);
-  } else {
-   callback(fileEntry);
+  if(this.root) {
+   callback(this.root);
   }
 };
 

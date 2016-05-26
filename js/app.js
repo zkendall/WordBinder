@@ -5,10 +5,12 @@ function TextApp() {
   this.editor_ = null;
   this.settings_ = null;
   this.tabs_ = null;
+  this.fileTree_ = null;
 
   this.dialogController_ = null;
   this.hotkeysController_ = null;
   this.menuController_ = null;
+  this.fileTreeController_ = null;
   this.searchController_ = null;
   this.settingsController_ = null;
   this.windowController_ = null;
@@ -17,24 +19,23 @@ function TextApp() {
 }
 
 /**
- * Called when all the resources have loaded. All initializations should be done
- * here.
+ * Called when all the resources have loaded. All initializations should be done here.
  */
 TextApp.prototype.init = function() {
   this.settings_ = new Settings();
   this.analytics_ = new Analytics();
   this.editor_ = new Editor($('#editor')[0], this.settings_);
-  this.dialogController_ = new DialogController($('#dialog-container'),
-                                                this.editor_);
+  this.dialogController_ = new DialogController($('#dialog-container'), this.editor_);
   this.tabs_ = new Tabs(this.editor_, this.dialogController_, this.settings_);
+  this.fileTree_ = new FileTree(new FileSystemService(chrome.fileSystem));
 
-  this.menuController_ = new MenuController(this.tabs_);
+  this.menuController_ = new MenuController(this.tabs_, this.fileTree_);
+  this.fileTreeController_ = new FileTreeController();
   this.searchController_ = new SearchController(this.editor_.getSearch());
   this.settingsController_ = new SettingsController(this.settings_);
-  this.windowController_ = new WindowController(
-      this.editor_, this.settings_, this.analytics_);
+  this.windowController_ = new WindowController(this.editor_, this.settings_, this.analytics_);
   this.hotkeysController_ = new HotkeysController( this.windowController_,
-      this.tabs_, this.editor_, this.settings_, this.analytics_);
+                this.tabs_, this.editor_, this.settings_, this.analytics_);
 
   if (this.settings_.isReady()) {
     this.onSettingsReady_();
@@ -89,8 +90,7 @@ TextApp.prototype.onSettingsReady_ = function() {
   this.setTheme();
   this.editor_.setFontSize(this.settings_.get('fontsize'));
   this.editor_.showHideLineNumbers(this.settings_.get('linenumbers'));
-  this.editor_.showHideMargin(this.settings_.get('margin'),
-                              this.settings_.get('margincol'));
+  this.editor_.showHideMargin(this.settings_.get('margin'), this.settings_.get('margincol'));
   this.editor_.setSmartIndent(this.settings_.get('smartindent'));
   this.editor_.replaceTabWithSpaces(this.settings_.get('spacestab'));
   this.editor_.setTabSize(this.settings_.get('tabsize'));
@@ -121,8 +121,7 @@ TextApp.prototype.onSettingsChanged_ = function(e, key, value) {
 
     case 'margin':
     case 'margincol':
-      this.editor_.showHideMargin(this.settings_.get('margin'),
-                                  this.settings_.get('margincol'));
+      this.editor_.showHideMargin(this.settings_.get('margin'), this.settings_.get('margincol'));
       break;
 
     case 'smartindent':

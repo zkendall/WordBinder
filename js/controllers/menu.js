@@ -1,13 +1,15 @@
 /**
  * @constructor
  */
-function MenuController(tabs) {
+function MenuController(tabs, fileTree) {
   this.tabs_ = tabs;
+  this.fileTree_ = fileTree;
   this.dragItem_ = null;
   $('#file-menu-new').click(this.newTab_.bind(this));
   $('#file-menu-open').click(this.open_.bind(this));
   $('#file-menu-save').click(this.save_.bind(this));
   $('#file-menu-saveas').click(this.saveas_.bind(this));
+  $('#file-menu-open-project').click(this.openProject_.bind(this));
   $(document).bind('newtab', this.onNewTab.bind(this));
   $(document).bind('switchtab', this.onSwitchTab.bind(this));
   $(document).bind('tabchange', this.onTabChange.bind(this));
@@ -91,6 +93,11 @@ MenuController.prototype.newTab_ = function() {
 
 MenuController.prototype.open_ = function() {
   this.tabs_.openFiles();
+  return false;
+};
+
+MenuController.prototype.openProject_ = function() {
+  this.fileTree_.openProject();
   return false;
 };
 

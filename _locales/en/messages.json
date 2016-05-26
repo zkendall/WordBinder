@@ -19,6 +19,10 @@
     "message": "Save as",
     "description":"The text of the File Menu 'Save as'."
   },
+  "fileMenuOpenProject": {
+    "message": "Open Project",
+    "description":"The text of the File Menu 'Open Project'."
+  },
   "menuOpenSettings": {
     "message": "Settings",
     "description":"The text of the Menu to open settings'."

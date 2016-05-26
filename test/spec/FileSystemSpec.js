@@ -24,6 +24,12 @@ describe("File System Directory", function() {
   });
 
 
+  it("choose directory", function() {
+    var results = service.chooseDirectoryAsModel(dirEntry);
+    expect(results.length).toEqual(entries.length);
+  });
+
+
   describe("Interaction with jqTree", function() {
 
     beforeEach(function() {
