@@ -3,10 +3,11 @@ function MockChromeFileSystem(directoryEntry, fileEntry) {
   this.root = directoryEntry;
 }
 
-
 MockChromeFileSystem.prototype.chooseEntry = function(options, callback) {
   if(this.root) {
-   callback(this.root);
+    setTimeout(function() {
+        callback(this.root);
+    }, 5);
   }
 };
 
@@ -25,7 +26,9 @@ MockChromeFileSystem.prototype.getFile = function(path, options, successCallback
       } else if (i == arr.length -1) { // Last element should be file 
         if(arr[i].toLowerCase() == value.name.toLowerCase()) {
           found = true;
-          successCallback(value);
+          setTimeout(function() {
+            successCallback(value);
+          }, 5);
           return;
         }
       }
@@ -46,7 +49,9 @@ function MockFileEntry(name, content) {
 
 MockFileEntry.prototype.file = function(successCallback, errorCallback) {
   // Ignore File interface, and just pass through FileEntry for now.
-  successCallback(this);
+  setTimeout(function() {
+    successCallback(this);
+  }, 5);
 };
 
 /*
@@ -89,6 +94,7 @@ MockDirectoryReader.prototype.readEntries = function(successCallback, errorCallb
   // Clear out entries before sending to callback.
   var cache = this.entries;
   this.entries = []
-  successCallback(cache);
-
+  setTimeout(function() {
+    successCallback(cache);
+  }, 5);
 }
