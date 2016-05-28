@@ -19,14 +19,15 @@ describe("File System Directory", function() {
   var service = new FileSystemService(fileSystem); 
 
   it("when given directory entry, returns entries", function() {
-    var results = service.getDirectoryEntries(dirEntry);
-    expect(results.length).toEqual(entries.length);
+    service.getDirectoryEntries(dirEntry, function(results) {
+      expect(results.length).toEqual(entries.length);
+    });
   });
 
-
   it("choose directory", function() {
-    var results = service.chooseDirectoryAsModel(dirEntry);
-    expect(results.length).toEqual(entries.length);
+    service.chooseDirectoryAsModel(function(results) {
+      expect(results.length).toEqual(entries.length);
+    });
   });
 
 
@@ -45,7 +46,10 @@ describe("File System Directory", function() {
     
     it("given directory entry, returns jqTree root", function() {
         // When build model from file system Entries
-        var results = service.getTreeModel(dirEntry);
+        var results = null;
+        service.getTreeModel(dirEntry, function(model) {
+          results = model;
+        });
         
         // Then
         expect(results[0].name).toEqual(entries[0].name);
