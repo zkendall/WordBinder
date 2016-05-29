@@ -24,22 +24,32 @@ class FileSystemService {
    * @return {tree}
    */
   getTreeModel(rootDirEntry, callback) {
-    var entries = this.getDirectoryEntries(rootDirEntry, function(entries){
-    var root = []
-      for (var i = 0, len = entries.length; i < len; ++i) {
-        var entry = entries[i];
-        var model = _entryToModel(entry);
+    var entries = this.getDirectoryEntries(rootDirEntry, function gotEntries(entries){
+      var root = []
 
+      var counter = 0;
+      var callbackCounter = function() {
+        if (++counter == entries.length) {
+          callback(root);
+        }
+      };
+
+      for (var i = 0, len = entries.length; i < len; ++i) {
+        let entry = entries[i];
+        let model = _entryToModel(entry);
         if(entry.isDirectory) {
-          // TODO: This doesn't seem to work sufficiently. Async Timing?
-          this.getTreeModel(entry, function(children) { model.children = children;});
+          this.getTreeModel(entry, function gotChildTree(children) {
+            model.children = children;
+            callbackCounter();
+          });
         } else {
-          // Get file content.
-          this.readFileEntry(entry, function(content) { model.textContent = content;});
+          this.readFileEntry(entry, function gotFileContents(content) {
+            model.textContent = content;
+            callbackCounter();
+          });
         }
         root.push(model);
-      }
-      callback(root);
+      } // End for-loop
     }.bind(this));
   }
 
