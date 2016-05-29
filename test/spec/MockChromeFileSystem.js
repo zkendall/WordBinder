@@ -7,7 +7,7 @@ MockChromeFileSystem.prototype.chooseEntry = function(options, callback) {
   if(this.root) {
     setTimeout(function() {
         callback(this.root);
-    }, 5);
+    }.bind(this), 5);
   }
 };
 
@@ -51,7 +51,7 @@ MockFileEntry.prototype.file = function(successCallback, errorCallback) {
   // Ignore File interface, and just pass through FileEntry for now.
   setTimeout(function() {
     successCallback(this);
-  }, 5);
+  }.bind(this), 5);
 };
 
 /*

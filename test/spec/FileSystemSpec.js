@@ -18,13 +18,13 @@ describe("File System Directory", function() {
 
   var service = new FileSystemService(fileSystem); 
 
-  it("when given directory entry, returns entries", function() {
+  it("When given directory entry, returns entries", function() {
     service.getDirectoryEntries(dirEntry, function(results) {
       expect(results.length).toEqual(entries.length);
     });
   });
 
-  it("choose directory", function() {
+  it("Choose directory returns accurate model", function() {
     service.chooseDirectoryAsModel(function(results) {
       expect(results.length).toEqual(entries.length);
     });
@@ -33,8 +33,16 @@ describe("File System Directory", function() {
 
   describe("Interaction with jqTree", function() {
 
-    beforeEach(function() {
+    var results  = null;
+
+    beforeEach(function(done) {
       $('body').append('<div id="tree1"></div>');
+
+      // When build model from file system Entries
+      service.getTreeModel(dirEntry, function(callbackResults) {
+        results = callbackResults;
+        done();
+      });
     });
 
     afterEach(function() {
@@ -44,12 +52,7 @@ describe("File System Directory", function() {
       $tree.remove();
     });
     
-    it("given directory entry, returns jqTree root", function() {
-        // When build model from file system Entries
-        var results = null;
-        service.getTreeModel(dirEntry, function(model) {
-          results = model;
-        });
+    it("Given directory entry, returns jqTree root", function() {
         
         // Then
         expect(results[0].name).toEqual(entries[0].name);
@@ -76,26 +79,52 @@ describe("File System Directory", function() {
   });
 
   describe("Opening files", function() {
+    var results = null;
     
-    it("Read contents of File Entry", function() {
-      var results;
-      service.readFileEntry(text1, function(contents) { results = contents; });
-      expect(results).toEqual(text1.content);
+    describe("Read contents of File Entry", function() {
+      beforeEach((done) => {
+        results = null;
+        service.readFileEntry(text1, (callbackResult)=>{
+          results = callbackResult;
+          done();
+        });
+      });
+
+      it("Expect matching contents", ()=>{
+        expect(results).toEqual(text1.content);
+      });
     });
 
-    it("Read contents of path", function() {
-      var results;
-      service.readFile("text/text1", function(contents) { results = contents; });
-      expect(results).toEqual(text1.content);
 
-      service.readFile("Research/Research2", function(contents) { results = contents; });
-      expect(results).toEqual(research2.content);
+    describe("Read contents of path", function() {
+      beforeEach((done) => {
+        results = null;
+        service.readFile("Research/Research2", (callbackResult)=>{
+          results = callbackResult;
+          done();
+        });
+      });
+      
+      it("Expect matching contents", ()=>{
+        expect(results).toEqual(research2.content);
+      });
     });
 
-    it("No file found", function() {
-      var nonExistant;
-      service.readFile("Research/I don't exist", function(contents) { results = contents; });
-      expect(nonExistant).toBeFalsy();
+
+    describe("No file found", function() {
+      beforeEach((done) => {
+        service.readFile("Research/I/no/exist", (callbackResult)=>{
+          results = callbackResult;
+          done();
+        }, (error) => {
+          results = error.message;
+          done();
+        });
+      });
+      
+      it("Expect error message", ()=>{
+        expect(results).toEqual("No file found for: Research/I/no/exist");
+      });
     });
 
   });

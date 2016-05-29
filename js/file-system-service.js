@@ -1,5 +1,7 @@
 /*
-*
+* // ToDo: Limit size of files and total file count/size to load.
+* // Limit extension to .txt and .md?
+* 
 * Reference: http://www.html5rocks.com/en/tutorials/file/filesystem/
 */
 class FileSystemService {
@@ -63,14 +65,14 @@ class FileSystemService {
     getEntries(reader, resultCallback);
   }
 
-  readFileEntry(fileEntry, successCallback) {
-    fileEntry.file(_fileReaderSuccessCallback(successCallback), _errorHandler);
+  readFileEntry(fileEntry, successCallback, errorCallback = _errorHandler) {
+    fileEntry.file(_fileReaderSuccessCallback(successCallback), errorCallback);
   }
 
-  readFile(path, successCallback) {
+  readFile(path, successCallback, errorCallback=_errorHandler) {
     this._fileSystem.getFile(path, {}, function(fileEntry) {
       fileEntry.file(_fileReaderSuccessCallback(successCallback));
-    }, _errorHandler);
+    }, errorCallback);
   }
 
 }
