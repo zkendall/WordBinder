@@ -21,3 +21,7 @@ and the package will be written to `text-app/build/` directory in zipped and unz
 
 # Forked from Chrome Text App
 Originally, I forked Googles simple text app to build on top of.
+
+## Hours worked
+For my own curiosity, I want to try to track my hours on this project.
+Hours: 20
