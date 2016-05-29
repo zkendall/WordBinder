@@ -18,15 +18,29 @@ describe("File System Directory", function() {
 
   var service = new FileSystemService(fileSystem); 
 
-  it("When given directory entry, returns entries", function() {
-    service.getDirectoryEntries(dirEntry, function(results) {
-      expect(results.length).toEqual(entries.length);
+  describe("When given directory entry, returns entries", function() {
+    results = null;
+    beforeEach((done) => {
+      service.getDirectoryEntries(dirEntry, (callbackResult)=>{
+        results = callbackResult;
+        done();
+      });
+    });
+    it("Expect matching size", function() {
+      expect(results.length).toEqual(dirEntry.entries.length);
     });
   });
 
-  it("Choose directory returns accurate model", function() {
-    service.chooseDirectoryAsModel(function(results) {
-      expect(results.length).toEqual(entries.length);
+  describe("Choose directory returns accurate model", function() {
+    results = null;
+    beforeEach((done) => {
+      service.chooseDirectoryAsModel((callbackResult)=>{
+        results = callbackResult;
+        done();
+      });
+    });
+    it("Expect matching size", function() {
+      expect(results.length).toEqual(dirEntry.entries.length);
     });
   });
 
