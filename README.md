@@ -24,4 +24,4 @@ Originally, I forked Googles simple text app to build on top of.
 
 ## Hours worked
 For my own curiosity, I want to try to track my hours on this project.
-Hours: 20
+Hours: 21

@@ -79,7 +79,7 @@ class FileSystemService {
     fileEntry.file(_fileReaderSuccessCallback(successCallback), errorCallback);
   }
 
-  readFile(path, successCallback, errorCallback=_errorHandler) {
+  readFile(path, successCallback, errorCallback =_errorHandler) {
     this._fileSystem.getFile(path, {}, function(fileEntry) {
       fileEntry.file(_fileReaderSuccessCallback(successCallback));
     }, errorCallback);
