@@ -43,7 +43,9 @@ FILES = [
   'images/minimize.svg',
   'lib/analytics/google-analytics-bundle.js',
   'lib/CodeMirror/lib/codemirror.css',
-  'lib/jquery-1.8.3.min.js'
+  'lib/jquery-1.8.3.min.js',
+  'lib/jqTree/tree.jquery.js',
+  'lib/jqTree/jqtree.css'
  ]
 
 MANIFEST = 'manifest.json'

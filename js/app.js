@@ -27,10 +27,10 @@ TextApp.prototype.init = function() {
   this.editor_ = new Editor($('#editor')[0], this.settings_);
   this.dialogController_ = new DialogController($('#dialog-container'), this.editor_);
   this.tabs_ = new Tabs(this.editor_, this.dialogController_, this.settings_);
-  this.fileTree_ = new FileTree(new FileSystemService(chrome.fileSystem));
+  this.fileTreeController_ = new FileTreeController();
+  this.fileTree_ = new FileTree(new FileSystemService(chrome.fileSystem), this.fileTreeController_);
 
   this.menuController_ = new MenuController(this.tabs_, this.fileTree_);
-  this.fileTreeController_ = new FileTreeController();
   this.searchController_ = new SearchController(this.editor_.getSearch());
   this.settingsController_ = new SettingsController(this.settings_);
   this.windowController_ = new WindowController(this.editor_, this.settings_, this.analytics_);

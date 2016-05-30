@@ -3,8 +3,10 @@ function FileTreeController(fileTree) {
 
 };
 
-DialogController.prototype.loadTree = function() {
+FileTreeController.prototype.loadTree = function(data) {
+  $(function() {
     $('#fileTree').tree({
-        data: data
+      data: data
     });
+  });
 }
