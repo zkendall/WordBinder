@@ -20,6 +20,7 @@ FILES = [
   'index.html',
   '_locales/en/messages.json',
   'css/app.css',
+  'css/jqtree.css',
   'css/print.css',
   'css/theme-dark.css',
   'css/theme-default.css',
@@ -44,8 +45,7 @@ FILES = [
   'lib/analytics/google-analytics-bundle.js',
   'lib/CodeMirror/lib/codemirror.css',
   'lib/jquery-1.8.3.min.js',
-  'lib/jqTree/tree.jquery.js',
-  'lib/jqTree/jqtree.css'
+  'lib/jqTree/tree.jquery.js'
  ]
 
 MANIFEST = 'manifest.json'
