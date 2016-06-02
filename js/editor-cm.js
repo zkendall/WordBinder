@@ -1,6 +1,7 @@
 var EditSession = CodeMirror.Doc;
 
 /**
+ * Assigned to `Editor` at the bottom of file.
  * @constructor
  * @param {DOM} elementId
  * @param {Settings} settings
