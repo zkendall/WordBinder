@@ -7,10 +7,10 @@ describe("Indexing", function() {
 
   describe("Parsing", function() {
     it("Parse research title", function() {
-      var title = parser.getTitle(research1_content);
+      var title = parser.getTitle(Content.research1_content);
       expect(title).toEqual("Bob")
 
-       var title = parser.getTitle(research2_content);
+       var title = parser.getTitle(Content.research2_content);
       expect(title).toEqual("Wonderland")
     });
 

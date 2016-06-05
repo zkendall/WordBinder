@@ -24,11 +24,10 @@ Originally, I forked Googles simple text app to build on top of.
 
 ## Hours worked
 For my own curiosity, I want to try to track my hours on this project.
-Hours: 22
+Hours: 24
 
 ## To Do
-- Pipe loaded content into text editor
-- Change tabs to two fixed side-by-side editors.
+- Mimic 'tab' behavior in tree: Nodes hold instance of CodeMirror.Doc as 'sessions'
 - Build CodeMirror syntax highlighting from indexer results.
 - 
 

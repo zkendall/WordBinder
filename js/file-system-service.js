@@ -111,6 +111,7 @@ function _errorHandler(error) {
 function _entryToModel(entry) {
   return { 
     name: entry.name,
+    id: entry.fullPath,
     children: []
   }
 }

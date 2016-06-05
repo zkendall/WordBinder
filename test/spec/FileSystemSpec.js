@@ -1,19 +1,8 @@
+
 var log = console.log.bind(console);
 
 describe("File System Directory", function() {
-
-  // Build test file system data
-  var text1 = new MockFileEntry("text1", text1_content);
-  var text2 = new MockFileEntry("text2", text2_content);
-  var texts = [text1, text2];
-  var textDir = new MockDirectoryEntry("Text", texts);
-  var research1 = new MockFileEntry("research1", research1_content);
-  var research2 = new MockFileEntry("research2", research2_content);
-  var researches = [research1, research2];
-  var researchDir = new MockDirectoryEntry("Research", researches);
-  var entries = [textDir, researchDir];
-  var dirEntry = new MockDirectoryEntry("root", entries);
-
+  var dirEntry = Fixtures.dirEntry;
   var fileSystem = new MockChromeFileSystem(dirEntry);
 
   var service = new FileSystemService(fileSystem); 
@@ -67,28 +56,23 @@ describe("File System Directory", function() {
     });
     
     it("Given directory entry, returns jqTree root", function() {
-        
-        // Then
-        expect(results[0].name).toEqual(entries[0].name);
-        expect(results[1].name).toEqual(entries[1].name);
-
-        // And when model sent to jqTree
+        // When model sent to jqTree
         var $tree = $('#tree1');
         $tree.tree({data: results});
         var tree = $tree.tree("getTree");
 
         // Then
-        expect(tree.children[0].name).toEqual(textDir.name);
-        expect(tree.children[0].children[0].name).toEqual(text1.name);
-        expect(tree.children[0].children[0].textContent).toEqual(text1.content);
-        expect(tree.children[0].children[1].name).toEqual(text2.name);
-        expect(tree.children[0].children[1].textContent).toEqual(text2.content);
+        expect(tree.children[0].name).toEqual(Fixtures.textDir.name);
+        expect(tree.children[0].children[0].name).toEqual(Fixtures.text1.name);
+        expect(tree.children[0].children[0].textContent).toEqual(Fixtures.text1.content);
+        expect(tree.children[0].children[1].name).toEqual(Fixtures.text2.name);
+        expect(tree.children[0].children[1].textContent).toEqual(Fixtures.text2.content);
 
-        expect(tree.children[1].name).toEqual(researchDir.name);
-        expect(tree.children[1].children[0].name).toEqual(research1.name);
-        expect(tree.children[1].children[0].textContent).toEqual(research1.content);
-        expect(tree.children[1].children[1].name).toEqual(research2.name);
-        expect(tree.children[1].children[1].textContent).toEqual(research2.content);
+        expect(tree.children[1].name).toEqual(Fixtures.researchDir.name);
+        expect(tree.children[1].children[0].name).toEqual(Fixtures.research1.name);
+        expect(tree.children[1].children[0].textContent).toEqual(Fixtures.research1.content);
+        expect(tree.children[1].children[1].name).toEqual(Fixtures.research2.name);
+        expect(tree.children[1].children[1].textContent).toEqual(Fixtures.research2.content);
     });
   });
 
@@ -98,14 +82,14 @@ describe("File System Directory", function() {
     describe("Read contents of File Entry", function() {
       beforeEach((done) => {
         results = null;
-        service.readFileEntry(text1, (callbackResult)=>{
+        service.readFileEntry(Fixtures.text1, (callbackResult)=>{
           results = callbackResult;
           done();
         });
       });
 
       it("Expect matching contents", ()=>{
-        expect(results).toEqual(text1.content);
+        expect(results).toEqual(Fixtures.text1.content);
       });
     });
 
@@ -120,7 +104,7 @@ describe("File System Directory", function() {
       });
       
       it("Expect matching contents", ()=>{
-        expect(results).toEqual(research2.content);
+        expect(results).toEqual(Fixtures.research2.content);
       });
     });
 
