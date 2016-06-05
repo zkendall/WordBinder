@@ -44,6 +44,7 @@ function MockFileEntry(name, content) {
   this.isFile = true;
   this.isDirectory = false;
   this.name = name;
+  this.fullPath = name;
   this.content = content;
 }
 

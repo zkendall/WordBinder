@@ -26,14 +26,18 @@ class FileTree {
     console.log(this.getElement_(id, this.currentModel_));
   }
 
-  getElement_(id, root) {
-    for(element of root.children) {
-      if (element.fullPath === id) {
+  static getElement_(root, id) {
+    for(var element of root) {
+      if (element.id === id) {
         return element;
-      } else if(element.isDirectory) {
-        return getElement_(id, element);
+      } else if(element.children.length > 0) {
+        var intermediary = this.getElement_(element.children, id);
+        if(intermediary !== null) {
+          return intermediary;
+        }
       }
     }
+    return null;
   }
 
 }

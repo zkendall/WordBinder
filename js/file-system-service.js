@@ -108,6 +108,7 @@ function _errorHandler(error) {
   console.log("Error: " + error.message);
 }
 
+// TODO: Make this a class so the model is explicit?
 function _entryToModel(entry) {
   return { 
     name: entry.name,
