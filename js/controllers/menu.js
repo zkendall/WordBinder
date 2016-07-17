@@ -34,6 +34,7 @@ MenuController.prototype.onNewTab = function(e, tab) {
   listItem.find('.close').click(this.closeTabClicked_.bind(this, id));
 };
 
+// TODO: What do these 'drag' do?
 MenuController.prototype.onDragStart_ = function(listItem, e) {
   this.dragItem_ = listItem;
 };
@@ -62,10 +63,12 @@ MenuController.prototype.onDragOver_ = function(overItem, e) {
 };
 
 MenuController.prototype.onTabRenamed = function(e, tab) {
+  // TODO: Handle by file-tree instead.
   $('#tab' + tab.getId() + ' .filename').text(tab.getName());
 };
 
 MenuController.prototype.onTabPathChange = function(e, tab) {
+  // TODO: Handle by file-tree instead.
   $('#tab' + tab.getId() + ' .filename').attr('title', tab.getPath());
 };
 
@@ -75,14 +78,17 @@ MenuController.prototype.onTabChange = function(e, tab) {
 };
 
 MenuController.prototype.onTabClosed = function(e, tab) {
+  // No longer needed, since we don't close files.
   $('#tab' + tab.getId()).remove();
 };
 
 MenuController.prototype.onTabSave = function(e, tab) {
+  // TODO: Apply to file-tree instead.
   $('#tab' + tab.getId()).removeClass('unsaved');
 };
 
 MenuController.prototype.onSwitchTab = function(e, tab) {
+  // No longer needed. Should be handled by file-tree instead.
   $('#tabs-list li.active').removeClass('active');
   $('#tab' + tab.getId()).addClass('active');
 };
