@@ -14,10 +14,10 @@ function WindowController(editor, settings, analytics) {
   $(document).bind('filesystemerror', this.onFileSystemError.bind(this));
   $(document).bind('loadingfile', this.onLoadingFile.bind(this));
   $(document).bind('switchfile', this.onChangeFile_.bind(this));
-  $(document).bind('tabchange', this.onTabChange_.bind(this));
+//  $(document).bind('tabchange', this.onDocChange_.bind(this));
   $(document).bind('tabpathchange', this.onTabPathChange.bind(this));
   $(document).bind('tabrenamed', this.onChangeFile_.bind(this));
-  $(document).bind('tabsave', this.onTabChange_.bind(this));
+  $(document).bind('tabsave', this.onDocChange_.bind(this));
 
   if (this.settings_.isReady()) {
     this.initSidebar_();

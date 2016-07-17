@@ -114,7 +114,7 @@ function Tabs(editor, dialogController, settings) {
   this.settings_ = settings;
   this.tabs_ = [];
   this.currentTab_ = null;
-  $(document).bind('docchange', this.onDocChanged_.bind(this));
+  //$(document).bind('docchange', this.onDocChanged_.bind(this));
 }
 
 /**
