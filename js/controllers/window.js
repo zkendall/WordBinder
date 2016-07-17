@@ -112,7 +112,7 @@ WindowController.prototype.onTabPathChange = function(e, tab) {
 };
 
 WindowController.prototype.onTabChange_ = function(e, tab) {
-  if (tab.isSaved()) {
+  if (tab.isSaved {
     $('#title-filename').removeClass('unsaved');
   } else {
     $('#title-filename').addClass('unsaved');

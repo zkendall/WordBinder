@@ -8,15 +8,8 @@ class FileModel {
     this.isSaved = false;
   }
 
-  getName() {
-  	return this.name;
-  }
-
   getPath() {
   	return this.id;
   }
 
-  isSaved() {
-  	return this.isSaved;
-  }
 }
