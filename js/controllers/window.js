@@ -5,7 +5,6 @@ function WindowController(editor, settings, analytics) {
   this.editor_ = editor;
   this.settings_ = settings;
   this.analytics_ = analytics;
-  this.currentTab_ = null;
   $('#window-close').click(this.close_.bind(this));
   $('#window-minimize').click(this.minimize_.bind(this));
   $('#window-maximize').click(this.maximize_.bind(this));
@@ -103,9 +102,8 @@ WindowController.prototype.onFileSystemError = function(e) {
 };
 
 WindowController.prototype.onChangeTab_ = function(e, tab) {
-  this.currentTab_ = tab;
   $('#title-filename').text(tab.getName());
-  this.onTabChange_();
+  this.onTabChange_(e, tab);
 };
 
 WindowController.prototype.onTabPathChange = function(e, tab) {
@@ -113,7 +111,7 @@ WindowController.prototype.onTabPathChange = function(e, tab) {
 };
 
 WindowController.prototype.onTabChange_ = function(e, tab) {
-  if (this.currentTab_.isSaved()) {
+  if (tab.isSaved()) {
     $('#title-filename').removeClass('unsaved');
   } else {
     $('#title-filename').addClass('unsaved');

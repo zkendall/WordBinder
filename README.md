@@ -29,5 +29,5 @@ Hours: 24
 ## To Do
 - Mimic 'tab' behavior in tree: Nodes hold instance of CodeMirror.Doc as 'sessions'
 - Build CodeMirror syntax highlighting from indexer results.
-- 
+- Implement rest of file behavior (save, move, rename, etc)
 

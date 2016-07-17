@@ -8,6 +8,7 @@ function FileTreeController() {
 
 FileTreeController.prototype.register = function(fileTree) {
   this.fileTree_ = fileTree;
+  $(document).bind('docchange', fileTree.onDocChanged_.bind(fileTree));
 }
 
 FileTreeController.prototype.loadTree = function(data) {

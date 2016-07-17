@@ -2,9 +2,10 @@
 * Handles the project navigator file tree state and model.
 */
 class FileTree {
-  constructor(fileSystemService, fileTreeController) {
+  constructor(fileSystemService, fileTreeController, editor) {
     this.fileSystemService_ = fileSystemService;
     this.fileTreeController_ = fileTreeController;
+    this.editor_ = editor;
     fileTreeController.register(this);
     this.currentModel_ = null;
   }
@@ -23,7 +24,9 @@ class FileTree {
   }
 
   showDocument(id) {
-    console.log(this.getElement_(id, this.currentModel_));
+    var element = FileTree.getElement_(this.currentModel_, id);
+    var session = this.getSession_(element);
+    this.editor_.setSession(session);
   }
 
   static getElement_(root, id) {
@@ -39,5 +42,20 @@ class FileTree {
     }
     return null;
   }
+
+  getSession_(element) {
+    if (element.session) {
+      return element.session;
+    }
+    else {
+      element.session = this.editor_.newSession(element.textContent);
+      return element.session;
+    }
+  }
+
+  onDocChanged_(e, session) {
+    var tab = this.currentTab_;
+    tab.changed();
+  };
 
 }
