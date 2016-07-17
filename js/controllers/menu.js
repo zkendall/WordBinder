@@ -70,6 +70,7 @@ MenuController.prototype.onTabPathChange = function(e, tab) {
 };
 
 MenuController.prototype.onTabChange = function(e, tab) {
+  // TODO: Apply to file-tree node instead.
   $('#tab' + tab.getId()).addClass('unsaved');
 };
 

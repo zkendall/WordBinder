@@ -107,6 +107,7 @@ WindowController.prototype.onChangeTab_ = function(e, tab) {
 };
 
 WindowController.prototype.onTabPathChange = function(e, tab) {
+  // I don't see this used anywhere...
   $('#title-filename').attr('title', tab.getPath());
 };
 

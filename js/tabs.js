@@ -402,22 +402,22 @@ Tabs.prototype.onSaveAsFileOpen_ = function(tab, close, entry) {
 
 Tabs.prototype.onDocChanged_ = function(e, session) {
   var tab = this.currentTab_;
-  if (this.currentTab_.getSession() !== session) {
-    console.warn('Something wrong. Current session should be',
-                 this.currentTab_.getSession(),
-                 ', but this session was changed:', session);
-    for (var i = 0; i < this.tabs_; i++) {
-      if (this.tabs_[i].getSession() === session) {
-        tab = this.tabs_[i];
-        break;
-      }
-    }
+  // if (this.currentTab_.getSession() !== session) {
+  //   console.warn('Something wrong. Current session should be',
+  //                this.currentTab_.getSession(),
+  //                ', but this session was changed:', session);
+  //   for (var i = 0; i < this.tabs_; i++) {
+  //     if (this.tabs_[i].getSession() === session) {
+  //       tab = this.tabs_[i];
+  //       break;
+  //     }
+  //   }
 
-    if (tab === this.currentTab_) {
-      console.error('Unkown tab changed.');
-      return;
-    }
-  }
+  //   if (tab === this.currentTab_) {
+  //     console.error('Unkown tab changed.');
+  //     return;
+  //   }
+  // }
 
   tab.changed();
 };

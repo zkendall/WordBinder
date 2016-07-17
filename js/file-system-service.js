@@ -108,8 +108,6 @@ function _errorHandler(error) {
   console.log("Error: " + error.message);
 }
 
-// TODO: Make this a class so the model is explicit?
-// ^^^ Yeah do this so we can add methods better..
 function _entryToModel(entry) {
   return new FileModel( 
     entry.name,
