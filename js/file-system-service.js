@@ -38,6 +38,7 @@ class FileSystemService {
         let entry = entries[i];
         let model = _entryToModel(entry);
         if(entry.isDirectory) {
+          model.isDirectory = true;
           this.getTreeModel(entry, function gotChildTree(children) {
             model.children = children;
             callbackCounter();

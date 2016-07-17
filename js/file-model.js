@@ -2,8 +2,9 @@ class FileModel {
   constructor(name, id, children=[]) {
     this.name = name;
     this.id = id;
+    this.isDirectory = false;
     this.children = children;
-    this.content = null;
+    this.textContent = null;
     this.session = null;
     this.isSaved = false;
   }

@@ -56,7 +56,9 @@ class FileTree {
 
   onDocChanged_(e, session) {
     var tab = this.currentTab_;
-    tab.changed();
+    if(tab.isDirectory) {
+      tab.changed();
+    }
   };
 
 }

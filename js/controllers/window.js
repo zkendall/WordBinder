@@ -101,9 +101,9 @@ WindowController.prototype.onFileSystemError = function(e) {
   $('#title-filename').text(chrome.i18n.getMessage('errorTitle'));
 };
 
-WindowController.prototype.onChangeFile_ = function(e, tab) {
-  $('#title-filename').text(tab.getName());
-  this.onTabChange_(e, tab);
+WindowController.prototype.onChangeFile_ = function(e, fileModel) {
+  $('#title-filename').text(fileModel.name);
+  this.onDocChange_(e, fileModel);
 };
 
 WindowController.prototype.onTabPathChange = function(e, tab) {
@@ -111,8 +111,8 @@ WindowController.prototype.onTabPathChange = function(e, tab) {
   $('#title-filename').attr('title', tab.getPath());
 };
 
-WindowController.prototype.onTabChange_ = function(e, tab) {
-  if (tab.isSaved {
+WindowController.prototype.onDocChange_ = function(e, fileModel) {
+  if (fileModel.fileModel) {
     $('#title-filename').removeClass('unsaved');
   } else {
     $('#title-filename').addClass('unsaved');
