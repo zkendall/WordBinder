@@ -13,10 +13,10 @@ function WindowController(editor, settings, analytics) {
   $(window).bind('error', this.onError_.bind(this));
   $(document).bind('filesystemerror', this.onFileSystemError.bind(this));
   $(document).bind('loadingfile', this.onLoadingFile.bind(this));
-  $(document).bind('switchtab', this.onChangeTab_.bind(this));
+  $(document).bind('switchfile', this.onChangeFile_.bind(this));
   $(document).bind('tabchange', this.onTabChange_.bind(this));
   $(document).bind('tabpathchange', this.onTabPathChange.bind(this));
-  $(document).bind('tabrenamed', this.onChangeTab_.bind(this));
+  $(document).bind('tabrenamed', this.onChangeFile_.bind(this));
   $(document).bind('tabsave', this.onTabChange_.bind(this));
 
   if (this.settings_.isReady()) {
@@ -101,7 +101,7 @@ WindowController.prototype.onFileSystemError = function(e) {
   $('#title-filename').text(chrome.i18n.getMessage('errorTitle'));
 };
 
-WindowController.prototype.onChangeTab_ = function(e, tab) {
+WindowController.prototype.onChangeFile_ = function(e, tab) {
   $('#title-filename').text(tab.getName());
   this.onTabChange_(e, tab);
 };

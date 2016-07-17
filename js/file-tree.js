@@ -27,6 +27,7 @@ class FileTree {
     var element = FileTree.getElement_(this.currentModel_, id);
     var session = this.getSession_(element);
     this.editor_.setSession(session);
+    $.event.trigger('switchfile', element);
   }
 
   static getElement_(root, id) {
