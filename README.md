@@ -24,10 +24,12 @@ Originally, I forked Googles simple text app to build on top of.
 
 ## Hours worked
 For my own curiosity, I want to try to track my hours on this project.
-Hours: 24
+Hours: 27
 
 ## To Do
-- Mimic 'tab' behavior in tree: Nodes hold instance of CodeMirror.Doc as 'sessions'
+- Mimic 'tab' behavior in tree:
+	- [DONE] Nodes hold instance of CodeMirror.Doc as 'sessions'.
+	- UI events should be replicated.
 - Build CodeMirror syntax highlighting from indexer results.
 - Implement rest of file behavior (save, move, rename, etc)
 
