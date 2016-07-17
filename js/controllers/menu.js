@@ -14,7 +14,6 @@ function MenuController(tabs, fileTree) {
   $(document).bind('switchtab', this.onSwitchTab.bind(this));
   $(document).bind('tabchange', this.onTabChange.bind(this));
   $(document).bind('tabclosed', this.onTabClosed.bind(this));
-  $(document).bind('tabpathchange', this.onTabPathChange.bind(this));
   $(document).bind('tabrenamed', this.onTabRenamed.bind(this));
   $(document).bind('tabsave', this.onTabSave.bind(this));
 }
@@ -65,11 +64,6 @@ MenuController.prototype.onDragOver_ = function(overItem, e) {
 MenuController.prototype.onTabRenamed = function(e, tab) {
   // TODO: Handle by file-tree instead.
   $('#tab' + tab.getId() + ' .filename').text(tab.getName());
-};
-
-MenuController.prototype.onTabPathChange = function(e, tab) {
-  // TODO: Handle by file-tree instead.
-  $('#tab' + tab.getId() + ' .filename').attr('title', tab.getPath());
 };
 
 MenuController.prototype.onTabChange = function(e, tab) {

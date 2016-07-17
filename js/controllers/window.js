@@ -14,8 +14,6 @@ function WindowController(editor, settings, analytics) {
   $(document).bind('filesystemerror', this.onFileSystemError.bind(this));
   $(document).bind('loadingfile', this.onLoadingFile.bind(this));
   $(document).bind('switchfile', this.onChangeFile_.bind(this));
-//  $(document).bind('tabchange', this.onDocChange_.bind(this));
-  $(document).bind('tabpathchange', this.onTabPathChange.bind(this));
   $(document).bind('tabrenamed', this.onChangeFile_.bind(this));
   $(document).bind('tabsave', this.onDocChange_.bind(this));
 
@@ -104,11 +102,6 @@ WindowController.prototype.onFileSystemError = function(e) {
 WindowController.prototype.onChangeFile_ = function(e, fileModel) {
   $('#title-filename').text(fileModel.name);
   this.onDocChange_(e, fileModel);
-};
-
-WindowController.prototype.onTabPathChange = function(e, tab) {
-  // I don't see this used anywhere...
-  $('#title-filename').attr('title', tab.getPath());
 };
 
 WindowController.prototype.onDocChange_ = function(e, fileModel) {
