@@ -24,7 +24,7 @@ function TextApp() {
 TextApp.prototype.init = function() {
   this.settings_ = new Settings();
   this.analytics_ = new Analytics();
-  this.editor_ = new Editor($('#editor')[0], this.settings_);
+  this.editor_ = new EditorCodeMirror($('#editor')[0], this.settings_);
   this.dialogController_ = new DialogController($('#dialog-container'), this.editor_);
   this.tabs_ = new Tabs(this.editor_, this.dialogController_, this.settings_);
   this.fileTreeController_ = new FileTreeController();

@@ -16,8 +16,8 @@ function EditorCodeMirror(editorElement, settings) {
         'autofocus': true,
         'matchBrackets': true,
         'highlightSelectionMatches': {
-          minChars: 1,
-          delay: 0,
+          minChars: 2,
+          delay: 100,
           annotateScrollbar: true
         }
       });
@@ -174,6 +174,4 @@ EditorCodeMirror.prototype.enable = function() {
   this.cm_.setOption('readOnly', false);
   this.cm_.focus();
 };
-
-var Editor = EditorCodeMirror;
 
