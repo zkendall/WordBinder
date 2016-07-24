@@ -19,17 +19,21 @@ Building script requires Python3 and will use online Closure Compiler. Just run
 
 and the package will be written to `text-app/build/` directory in zipped and unzipped formats.
 
-# Forked from Chrome Text App
-Originally, I forked Googles simple text app to build on top of.
+## Forked from Chrome Text App
+Originally, I forked Google's simple text app as a foundation as I learn javascript.
 
 ## Hours worked
 For my own curiosity, I want to try to track my hours on this project.
 Hours: 27
 
 ## To Do
+- Implement rest of file behavior (save, move, rename, etc)
 - Mimic 'tab' behavior in tree:
 	- [DONE] Nodes hold instance of CodeMirror.Doc as 'sessions'.
 	- UI events should be replicated.
+	- File rename
+	- File move
+	- Close?
 - Build CodeMirror syntax highlighting from indexer results.
-- Implement rest of file behavior (save, move, rename, etc)
+- Split file tree into two, one for Text and one for Notes.
 

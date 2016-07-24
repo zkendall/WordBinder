@@ -15,9 +15,9 @@
     "message": "Save",
     "description":"The text of the File Menu 'Save'."
   },
-  "fileMenuSaveas": {
-    "message": "Save as",
-    "description":"The text of the File Menu 'Save as'."
+  "fileMenuSaveAll": {
+    "message": "Save All",
+    "description":"The text of the File Menu 'Save All'."
   },
   "fileMenuOpenProject": {
     "message": "Open Project",
