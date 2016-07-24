@@ -98,7 +98,7 @@ img {
   margin: 24px 0;
 }
 
-#tabs-list-container, #settings-container {
+#file-tree-container, #settings-container {
   display: -webkit-box;
   height: auto;
   -webkit-box-flex: 1.0;

@@ -13,13 +13,13 @@ FileTreeController.prototype.register = function(fileTree) {
 
 FileTreeController.prototype.loadTree = function(data) {
     // Build tree
-    $('#fileTree').tree({
+    $('#file-tree').tree({
       data: data,
       useContextMenu: false
     });
 
     // Register events
-    $('#fileTree').bind(
+    $('#file-tree').bind(
     'tree.click',
     (event) => {
       var node = event.node;
