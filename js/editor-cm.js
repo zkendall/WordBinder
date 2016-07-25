@@ -19,7 +19,8 @@ function EditorCodeMirror(editorElement, settings) {
           minChars: 2,
           delay: 100,
           annotateScrollbar: true
-        }
+        },
+        'smartIndent': false
       });
   this.cm_.setSize(null, 'auto');
   this.cm_.on('change', this.onChange.bind(this));
@@ -35,7 +36,7 @@ function EditorCodeMirror(editorElement, settings) {
  * Create an edit session for a new file. Each tab should have its own session.
  */
 EditorCodeMirror.prototype.newSession = function(opt_content) {
-  var session = new CodeMirror.Doc(opt_content || '');
+  var session = new CodeMirror.Doc(opt_content || '', "dynamic-mode");
   return session;
 };
 /**

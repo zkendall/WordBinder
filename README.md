@@ -24,7 +24,7 @@ Originally, I forked Google's simple text app as a foundation as I learn javascr
 
 ## Hours worked
 For my own curiosity, I want to try to track my hours on this project.
-Hours: 27
+Hours: 30
 
 ## To Do
 - Implement rest of file behavior (save, move, rename, etc)
