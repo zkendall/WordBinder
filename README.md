@@ -24,7 +24,7 @@ Originally, I forked Google's simple text app as a foundation as I learn javascr
 
 ## Hours worked
 For my own curiosity, I want to try to track my hours on this project.
-Hours: 30
+Hours: 32
 
 ## To Do
 - Implement rest of file behavior (save, move, rename, etc)
@@ -36,4 +36,5 @@ Hours: 30
 	- Close?
 - Build CodeMirror syntax highlighting from indexer results.
 - Split file tree into two, one for Text and one for Notes.
+- Split editor into two, one for Text and one for Notes.
 

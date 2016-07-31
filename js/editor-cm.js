@@ -9,6 +9,7 @@ var EditSession = CodeMirror.Doc;
 function EditorCodeMirror(editorElement, settings) {
   this.element_ = editorElement;
   this.settings_ = settings;
+  this.dynamicMode_ = new DynamicMode();
   this.cm_ = CodeMirror(
       editorElement,
       {
@@ -25,6 +26,7 @@ function EditorCodeMirror(editorElement, settings) {
   this.cm_.setSize(null, 'auto');
   this.cm_.on('change', this.onChange.bind(this));
   this.setTheme();
+  this.setMode();
   this.search_ = new Search(this.cm_);
   // Mimic Sublime behaviour there.
   this.defaultTabHandler_ = CodeMirror.commands.defaultTab;
@@ -111,6 +113,10 @@ EditorCodeMirror.prototype.setTabSize = function(size) {
  */
 EditorCodeMirror.prototype.setTheme = function(theme) {
   this.cm_.setOption('theme', theme || 'default');
+};
+
+EditorCodeMirror.prototype.setMode = function() {
+  this.dynamicMode_.defineMode();
 };
 
 /**

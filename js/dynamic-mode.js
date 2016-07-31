@@ -7,18 +7,22 @@ class DynamicMode {
     this.indexService_ = indexService;
   }
 
-  function defineMode() {
-    CodeMirror.defineSimpleMode("dynamic-mode", buildMode_()); 
+  defineMode() {
+    CodeMirror.defineSimpleMode("dynamic-mode", this.buildMode_()); 
   }
 
-  function buildMode_() {
+  buildMode_(keywords = []) {
+    if (!keywords || keywords.length == 0) return {start:[]};
+   
     return {
       start: [
-      // Mocked behavior.
-        {regex: /\b(bob|mary|keq'sai)\b/i, token: "keyword-1"},
-        {regex: /oregon|seattle/i, token: "keyword-2"}
+        {regex: this.buildRegex_(keywords), token: "keyword-8"}
       ]
     }
+  }
+
+  buildRegex_(words) {
+    return new RegExp("\\b(" + words.join("|") + ")\\b", "i")
   }
 
 }
