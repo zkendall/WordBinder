@@ -14,7 +14,7 @@ class FileTree {
     this.fileSystemService_.chooseDirectoryAsModel(function(model) {
       console.log(model);
       this.currentModel_ = model;
-      this.fileTreeController_.loadTree(this.forView(this.currentModel_));
+      this.fileTreeController_.loadManuscriptTree(this.forView(this.currentModel_));
     }.bind(this));
   }
 

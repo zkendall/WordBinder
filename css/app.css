@@ -98,7 +98,16 @@ img {
   margin: 24px 0;
 }
 
-#file-tree-container, #settings-container {
+#file-tabs-menu {
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: justify;
+  display: -webkit-box;
+  min-height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+#manuscript-tree-container, #notes-tree-container, #settings-container {
   display: -webkit-box;
   height: auto;
   -webkit-box-flex: 1.0;
@@ -106,6 +115,8 @@ img {
   overflow-y: scroll;
 }
 
+
+/*
 #tabs-list {
   margin: 24px 0 24px 0;
   overflow-x: hidden;
@@ -154,15 +165,7 @@ img {
 #tabs-list li .close:hover {
   opacity: 1;
 }
-
-#file-tabs-menu {
-  -webkit-box-orient: vertical;
-  -webkit-box-pack: justify;
-  display: -webkit-box;
-  min-height: 100%;
-  overflow: hidden;
-  width: 100%;
-}
+*/
 
 #settings-menu {
   -webkit-box-orient: vertical;

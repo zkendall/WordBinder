@@ -6,7 +6,7 @@ function MenuController(tabs, fileTree) {
   this.fileTree_ = fileTree;
   this.dragItem_ = null;
   $('#file-menu-save-all').click(this.saveAll_.bind(this));
-  $('#file-menu-open-project').click(this.openProject_.bind(this));
+  $('#file-menu-open-manuscript').click(this.openProject_.bind(this));
 }
 
 MenuController.prototype.onNewTab = function(e, tab) {

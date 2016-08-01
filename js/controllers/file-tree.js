@@ -3,27 +3,27 @@
  * Handles file tree view.
  */
 function FileTreeController() {
-  this.fileTree_ = null;
+  this.manuscriptTree_ = null;
 };
 
 FileTreeController.prototype.register = function(fileTree) {
-  this.fileTree_ = fileTree;
+  this.manuscriptTree_ = fileTree;
   $(document).bind('docchange', fileTree.onDocChanged_.bind(fileTree));
 }
 
-FileTreeController.prototype.loadTree = function(data) {
+FileTreeController.prototype.loadManuscriptTree = function(data) {
     // Build tree
-    $('#file-tree').tree({
+    $('#manuscript-tree').tree({
       data: data,
       useContextMenu: false
     });
 
     // Register events
-    $('#file-tree').bind(
+    $('#manuscript-tree').bind(
     'tree.click',
     (event) => {
       var node = event.node;
-      this.fileTree_.showDocument(node.id);
+      this.manuscriptTree_.showDocument(node.id);
     });
 
 }

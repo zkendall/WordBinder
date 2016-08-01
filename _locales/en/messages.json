@@ -19,9 +19,13 @@
     "message": "Save All",
     "description":"The text of the File Menu 'Save All'."
   },
-  "fileMenuOpenProject": {
-    "message": "Open Project",
-    "description":"The text of the File Menu 'Open Project'."
+  "fileMenuOpenManuscript": {
+    "message": "Open Manuscript Folder",
+    "description":"The text of the File Menu 'Open Manuscript'."
+  },
+  "fileMenuOpenNotes": {
+    "message": "Open Notes Folder",
+    "description":"The text of the File Menu 'Open Notes'."
   },
   "menuOpenSettings": {
     "message": "Settings",
