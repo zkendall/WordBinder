@@ -1,12 +1,14 @@
 /**
  * @constructor
  */
-function MenuController(tabs, fileTree) {
+function MenuController(tabs, manuscriptTree, notesTree) {
   this.tabs_ = tabs;
-  this.fileTree_ = fileTree;
+  this.manuscriptTree_ = manuscriptTree;
+  this.notesTree_ = notesTree;
   this.dragItem_ = null;
   $('#file-menu-save-all').click(this.saveAll_.bind(this));
-  $('#file-menu-open-manuscript').click(this.openProject_.bind(this));
+  $('#file-menu-open-manuscript').click(this.openManuscript_.bind(this));
+  $('#file-menu-open-notes').click(this.openNotes_.bind(this));
 }
 
 MenuController.prototype.onNewTab = function(e, tab) {
@@ -39,8 +41,13 @@ MenuController.prototype.onSwitchTab = function(e, tab) {
   $('#tab' + tab.getId()).addClass('active');
 };
 
-MenuController.prototype.openProject_ = function() {
-  this.fileTree_.openProject();
+MenuController.prototype.openManuscript_ = function() {
+  this.manuscriptTree_.openProject();
+  return false;
+};
+
+MenuController.prototype.openNotes_ = function() {
+  this.notesTree_.openProject();
   return false;
 };
 

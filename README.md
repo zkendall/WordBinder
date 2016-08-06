@@ -2,7 +2,7 @@
 An opinionated text editor for long-form stories.
 
 ## Motivation
-I want to make a minimalist text editor that binds my research notes to the novel that I'm working on. I want 'type-safe' tooling around my story as I have around programming. The writer should be able to jump from idea to idea easily and without breaking flow, and auxiliary research should automatically be provided on the side lines for quick reference.
+I want to make a minimalist text editor that binds my notes to the manuscript that I'm working on. I want 'type-safe' tooling around my story as I have around programming. The writer should be able to jump from idea to idea easily and without breaking flow, and auxiliary research should automatically be provided on the side lines for quick reference.
 
 ## Running the development version
 
@@ -22,12 +22,8 @@ and the package will be written to `text-app/build/` directory in zipped and unz
 ## Forked from Chrome Text App
 Originally, I forked Google's simple text app as a foundation as I learn javascript.
 
-## Hours worked
-For my own curiosity, I want to try to track my hours on this project.
-Hours: 33
-
 ## To Do
-- Split file tree into two, one for Text and one for Notes.
+- Fix mouse-over css bug in notes tree.
 - Split editor into two, one for Text and one for Notes.
 - Implement rest of file behavior (save, move, rename, etc)
 - Mimic 'tab' behavior in tree:
@@ -39,3 +35,4 @@ Hours: 33
 - Hook up indexer to build keywords from Note titles.
 - [DONE] Build CodeMirror syntax highlighting from indexer results.
 
+Approximate hour worked: 34
