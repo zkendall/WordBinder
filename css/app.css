@@ -108,9 +108,9 @@ img {
 }
 
 #manuscript-tree-container, #notes-tree-container, #settings-container {
-  display: -webkit-box;
+  /*display: -webkit-box;*/
   height: auto;
-  -webkit-box-flex: 1.0;
+  /*-webkit-box-flex: 1.0;*/
   overflow-x: hidden;
   overflow-y: scroll;
 }

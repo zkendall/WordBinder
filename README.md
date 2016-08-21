@@ -24,6 +24,7 @@ Originally, I forked Google's simple text app as a foundation as I learn javascr
 
 ## To Do
 - Fix mouse-over css bug in notes tree.
+	- It's the -webkit-box-flex
 - Split editor into two, one for Text and one for Notes.
 - Implement rest of file behavior (save, move, rename, etc)
 - Mimic 'tab' behavior in tree:
@@ -34,5 +35,3 @@ Originally, I forked Google's simple text app as a foundation as I learn javascr
 	- Close?
 - Hook up indexer to build keywords from Note titles.
 - [DONE] Build CodeMirror syntax highlighting from indexer results.
-
-Approximate hour worked: 34

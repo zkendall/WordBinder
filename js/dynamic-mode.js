@@ -8,7 +8,7 @@ class DynamicMode {
   }
 
   defineMode() {
-    CodeMirror.defineSimpleMode("dynamic-mode", this.buildMode_()); 
+    CodeMirror.defineSimpleMode("dynamic-mode", this.buildMode_(this.indexService_.getKeywords())); 
   }
 
   buildMode_(keywords = []) {

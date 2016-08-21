@@ -3,5 +3,8 @@ class IndexService {
     this.parser = parser;
   }
 
+  getKeywords() {
+  	return [];
+  }
 
 }
