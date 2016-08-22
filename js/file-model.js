@@ -1,7 +1,7 @@
 class FileModel {
   constructor(name, id, children=[]) {
     this.name = name;
-    this.id = id;
+    this.id = id; // path
     this.isDirectory = false;
     this.children = children;
     this.textContent = null;
